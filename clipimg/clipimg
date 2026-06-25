@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+outdir="${CLIPIMG_DIR:-/tmp/omp-clipboard}"
+mkdir -p "$outdir"
+outfile="$outdir/clip-$(date +%Y%m%d-%H%M%S)-$$.png"
+
+powershell.exe -NoProfile -NonInteractive -Command '
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$img = [System.Windows.Forms.Clipboard]::GetImage()
+if ($null -eq $img) {
+    [Console]::Error.WriteLine("Clipboard does not contain an image.")
+    exit 2
+}
+
+$ms = New-Object System.IO.MemoryStream
+$img.Save($ms, [System.Drawing.Imaging.ImageFormat]::Png)
+[Console]::Out.Write([Convert]::ToBase64String($ms.ToArray()))
+' | base64 -d > "$outfile"
+
+printf '%s\n' "$outfile"
