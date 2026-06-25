@@ -2,7 +2,12 @@
 
 Export the current Windows clipboard image to a PNG file from WSL, then print the absolute PNG path.
 
-This is intended for OMP / opencode workflows where a WSL terminal cannot paste image clipboard data directly.
+This is intended for OMP workflows where a WSL terminal cannot paste image clipboard data directly.
+
+The installer creates both:
+
+- `~/.local/bin/clipimg`
+- `~/.omp/agent/commands/clipimg.md` for the OMP `/clipimg` slash command
 
 ## Install
 
@@ -10,7 +15,7 @@ This is intended for OMP / opencode workflows where a WSL terminal cannot paste 
 curl -fsSL https://raw.githubusercontent.com/LiangDadada/oc-plugins/main/clipimg/install.sh | sh
 ```
 
-By default, the installer writes to `~/.local/bin/clipimg`.
+By default, the installer writes the binary to `~/.local/bin/clipimg` and the OMP command to `~/.omp/agent/commands/clipimg.md`.
 
 If `~/.local/bin` is not in `PATH`, add this to your shell config:
 
@@ -18,9 +23,25 @@ If `~/.local/bin` is not in `PATH`, add this to your shell config:
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-## Usage
+If your OMP agent directory is not `~/.omp/agent`, set `PI_CODING_AGENT_DIR` while installing:
 
-Copy or screenshot an image on Windows, then run from WSL:
+```bash
+curl -fsSL https://raw.githubusercontent.com/LiangDadada/oc-plugins/main/clipimg/install.sh | PI_CODING_AGENT_DIR="/path/to/agent" sh
+```
+
+## Usage in OMP
+
+Copy or screenshot an image on Windows, then run in OMP:
+
+```text
+/clipimg 现在呢
+```
+
+The slash command runs `clipimg`, reads the generated PNG, then answers using that image.
+
+## CLI usage
+
+You can also run the CLI directly from WSL:
 
 ```bash
 clipimg
@@ -57,3 +78,5 @@ Default:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/LiangDadada/oc-plugins/main/clipimg/uninstall.sh | sh
 ```
+
+The uninstaller removes the binary and the managed OMP slash command. If `clipimg.md` exists but does not contain the install marker, it is left in place.
