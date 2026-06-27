@@ -3,7 +3,7 @@
 set -eu
 
 MARKER="oc-plugins/opencode-loop"
-RAW_BASE="${RAW_BASE:-https://raw.githubusercontent.com/LiangDadada/oc-plugins/main/opencode-loop}"
+RAW_BASE="${RAW_BASE:-https://raw.githubusercontent.com/LiangDadada/oc-plugins/refs/heads/main/opencode-loop}"
 ROOT="${OPENCODE_LOOP_ROOT:-$PWD}"
 FORCE="${OPENCODE_LOOP_FORCE:-0}"
 INSTALL_ALIASES="${OPENCODE_LOOP_INSTALL_ALIASES:-0}"
