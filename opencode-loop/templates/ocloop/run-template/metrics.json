@@ -1,0 +1,9 @@
+{
+  "managed_by": "oc-plugins/opencode-loop",
+  "metric": null,
+  "baseline": null,
+  "candidate": null,
+  "threshold": null,
+  "regressions": {},
+  "accepted": false
+}

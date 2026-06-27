@@ -1,0 +1,23 @@
+{
+  "managed_by": "oc-plugins/opencode-loop",
+  "loop_type": null,
+  "phase": "INTAKE",
+  "status": "running",
+  "attempt": 1,
+  "max_attempts": 5,
+  "task": null,
+  "scope": {
+    "allow": [],
+    "deny": [".env*", "**/.env*", "**/migrations/**", "**/lock*", ".github/**"]
+  },
+  "checks": {
+    "focused": "./scripts/focused.sh <pattern>",
+    "health": "./scripts/health.sh",
+    "full": "./scripts/full.sh",
+    "benchmark": "./scripts/benchmark.sh",
+    "eval": "./scripts/eval.sh"
+  },
+  "evidence": {},
+  "last_failure": null,
+  "done": false
+}

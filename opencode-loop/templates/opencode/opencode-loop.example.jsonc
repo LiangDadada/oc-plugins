@@ -1,0 +1,27 @@
+// Managed by oc-plugins/opencode-loop
+// Optional project config snippet. The installer does not merge this automatically.
+// Copy the parts you need into opencode.json or opencode.jsonc.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "skill": {
+      "software-loop-contract": "allow"
+    },
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "./scripts/*": "allow",
+      "rm *": "deny",
+      "rm -rf *": "deny",
+      "git push*": "deny",
+      "git reset --hard*": "deny",
+      "git clean*": "deny"
+    },
+    "edit": {
+      "*": "ask",
+      ".env*": "deny",
+      "**/.env*": "deny"
+    }
+  }
+}
